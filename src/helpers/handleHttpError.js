@@ -1,6 +1,6 @@
 const handleHttpError = (err) => {
   const errorCodeLst = [409, 422, 401];
-  const statusCode = err.response?.data.statusCode;
+  const statusCode = err.response?.data.status;
 
   if (errorCodeLst.includes(statusCode)) {
     return err.response.data.message;
