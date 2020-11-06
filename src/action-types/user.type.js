@@ -1,5 +1,8 @@
 const userActionTypes = {
   SIGN_IN_START: 'SIGN_IN_START',
+  SIGN_IN_SET_LOADING: 'SIGN_IN_SET_LOADING',
+  SIGN_IN_SET_ERROR: 'SIGN_IN_SET_ERROR',
+  SIGN_IN_SET_USER: 'SIGN_IN_SET_USER',
 }
 
 export default userActionTypes;

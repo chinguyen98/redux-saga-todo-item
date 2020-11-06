@@ -6,3 +6,24 @@ export const signInStartAction = (email, password) => {
     payload: { email, password }
   }
 }
+
+export const signInSetLoadingAction = (isLoading) => {
+  return {
+    type: userActionTypes.SIGN_IN_SET_LOADING,
+    payload: { isLoading }
+  }
+}
+
+export const signInSetErrorAction = (error) => {
+  return {
+    type: userActionTypes.SIGN_IN_SET_ERROR,
+    payload: { error }
+  }
+}
+
+export const signInSetUserAction = (firstName, lastName, isLoading) => {
+  return {
+    type: userActionTypes.SIGN_IN_SET_USER,
+    payload: { firstName, lastName, isLoading },
+  }
+}

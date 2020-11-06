@@ -1,6 +1,6 @@
-import axiosClient from "./axiosClient";
+import axiosClient from "./axios-client";
 
-export const signInApi= ({ email, password }) => {
+export const signInApi = (email, password) => {
   const url = '/auth/signin';
-  return axiosClient.post(url, {email, password});
+  return axiosClient.post(url, { email, password });
 }
