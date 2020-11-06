@@ -4,6 +4,7 @@ const initState = {
   firstName: null,
   lastName: null,
   isLoading: false,
+  isLogged: false,
   error: null,
 }
 
@@ -32,6 +33,7 @@ const userReducer = (state = initState, action) => {
         firstName,
         lastName,
         isLoading,
+        isLogged: true,
       }
     }
     default: {

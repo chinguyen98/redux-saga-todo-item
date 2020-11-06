@@ -7,13 +7,14 @@ import handleHttpError from "../helpers/handleHttpError";
 
 const delay = (ms) => new Promise(res => setTimeout(res, ms))
 
-function* signInProcess({ payload: { email, password } }) {
+function* signInProcess({ payload: { email, password, redirectCallback } }) {
   try {
     yield put(signInSetLoadingAction(true));
     yield delay(3000);//assuming this take take 3s to response!
     const response = yield signInApi(email, password);
     const { firstname, lastname } = yield jwt.decode(response.accessToken);
     yield put(signInSetUserAction(firstname, lastname, false));
+    redirectCallback('/todo');
   } catch (err) {
     const message = yield handleHttpError(err);
     yield put(signInSetErrorAction(message));

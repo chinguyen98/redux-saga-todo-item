@@ -7,9 +7,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import './login-page.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStartAction } from '../../actions/user.action';
+import { useHistory } from 'react-router-dom';
 
 function LoginPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const errorMessage = useSelector(state => state.user.error);
   const isLoading = useSelector(state => state.user.isLoading);
@@ -27,7 +29,7 @@ function LoginPage() {
   });
 
   const handleSignIn = ({ email, password }) => {
-    dispatch(signInStartAction(email, password));
+    dispatch(signInStartAction(email, password, history.push));
   };
 
 

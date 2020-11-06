@@ -1,9 +1,9 @@
 import userActionTypes from "../action-types/user.type"
 
-export const signInStartAction = (email, password) => {
+export const signInStartAction = (email, password, redirectCallback) => {
   return {
     type: userActionTypes.SIGN_IN_START,
-    payload: { email, password }
+    payload: { email, password, redirectCallback }
   }
 }
 

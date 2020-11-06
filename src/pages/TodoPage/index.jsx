@@ -1,10 +1,14 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function TodoPage() {
   return (
     <Container>
-      <h1>Todo List!!!</h1>
+      <Row>
+        <Col className="text-center" md={12} xs={12}>
+          <h1>Todo List!!!</h1>
+        </Col>
+      </Row>
     </Container>
   );
 }
