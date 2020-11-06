@@ -3,10 +3,12 @@ const { default: todoActionTypes } = require("../action-types/todo.type");
 const initState = {
   listTodo: [
     {
+      id: '1',
       content: 'Example Not Done!',
       isDone: false,
     },
     {
+      id: '2',
       content: 'Example Done!',
       isDone: true,
     },
@@ -16,8 +18,9 @@ const initState = {
 const todoReducer = (state = initState, action) => {
   switch (action.type) {
     case todoActionTypes.TO_DO_CREATE: {
-      const { content } = action.payload;
+      const { id, content } = action.payload;
       const item = {
+        id,
         content,
         isDone: false,
       }

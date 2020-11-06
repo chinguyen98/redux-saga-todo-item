@@ -6,6 +6,7 @@ import TodoItem from '../../components/TodoItem';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { todoCreateAction } from '../../actions/todo.action';
+import { v4 as uuidv4 } from 'uuid';
 
 function HomePage() {
   const { firstName } = useSelector(state => state.user);
@@ -37,7 +38,7 @@ function HomePage() {
   }
 
   const handleAddTodoItem = ({ todo }) => {
-    dispatch(todoCreateAction(todo));
+    dispatch(todoCreateAction(uuidv4(), todo));
   }
 
   return (

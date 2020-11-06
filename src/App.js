@@ -10,8 +10,8 @@ function App() {
     <>
       <BrowserRouter>
         <Menu />
-          <AuthenticatedRoute exact path="/" component={HomePage} />
-          <Route path="/auth" component={Auth} />
+        <AuthenticatedRoute exact path="/" component={HomePage} />
+        <Route path="/auth" component={Auth} />
       </BrowserRouter>
     </>
   );
