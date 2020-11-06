@@ -1,18 +1,20 @@
 import React from 'react';
+import Switch from 'react-bootstrap/esm/Switch';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Auth from './components/Auth';
+import AuthenticatedRoute from './components/AuthenticatedRoute';
 import Menu from './components/Menu';
-import IntroPage from './pages/IntroPage';
-import TodoPage from './pages/TodoPage';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <>
-      <Menu />
       <BrowserRouter>
-        <Route exact path="/" component={IntroPage} />
-        <Route exact path="/todo" component={TodoPage} />
-        <Route path="/auth" component={Auth} />
+        <Menu />
+        <Switch>
+          <AuthenticatedRoute exact path="/" component={HomePage} />
+          <Route path="/auth" component={Auth} />
+        </Switch>
       </BrowserRouter>
     </>
   );

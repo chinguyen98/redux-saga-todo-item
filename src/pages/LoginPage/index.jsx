@@ -45,11 +45,11 @@ function LoginPage() {
           </Col>
           <Col className="pb-3" md={8}>
             <Form.Label>Email address <span className="text-danger">{errors.email?.message}</span></Form.Label>
-            <Form.Control ref={register} name="email" type="text" placeholder="Enter email" />
+            <Form.Control ref={register} name="email" type="text" placeholder="Enter email" defaultValue="dacchi6761@gmail.com" />
           </Col>
           <Col className="pb-3" md={8}>
             <Form.Label>Password <span className="text-danger">{errors.password?.message}</span></Form.Label>
-            <Form.Control ref={register} name="password" type="password" placeholder="Enter password" />
+            <Form.Control ref={register} name="password" type="password" placeholder="Enter password" defaultValue="Aa12345" />
           </Col>
           <Col md={8}>
             <Button variant={isLoading ? 'dark' : 'primary'} type="submit" disabled={isLoading}>

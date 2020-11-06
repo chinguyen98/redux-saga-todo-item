@@ -14,7 +14,7 @@ function* signInProcess({ payload: { email, password, redirectCallback } }) {
     const response = yield signInApi(email, password);
     const { firstname, lastname } = yield jwt.decode(response.accessToken);
     yield put(signInSetUserAction(firstname, lastname, false));
-    redirectCallback('/todo');
+    redirectCallback('/');
   } catch (err) {
     const message = yield handleHttpError(err);
     yield put(signInSetErrorAction(message));
