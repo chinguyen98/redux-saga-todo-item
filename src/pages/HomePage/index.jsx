@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TodoItem from '../../components/TodoItem';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { todoCreateAction } from '../../actions/todo.action';
+import { todoCreateAction, todoDeleteAction } from '../../actions/todo.action';
 import { v4 as uuidv4 } from 'uuid';
 
 function HomePage() {
@@ -23,22 +23,27 @@ function HomePage() {
     resolver: yupResolver(schema),
   });
 
+  const handleAddTodoItem = ({ todo }) => {
+    dispatch(todoCreateAction(uuidv4(), todo));
+  }
+
+  const handleDeleteTodoItem = (id) => {
+    dispatch(todoDeleteAction(id));
+  }
+
   const renderTodoList = () => {
     const gui = listTodo.map(item => {
       return (
         <TodoItem
-          key={item.content}
+          key={item.id}
           content={item.content}
           isDone={item.isDone}
+          deleteItem={() => { handleDeleteTodoItem(item.id) }}
         />
       )
     })
 
     return gui;
-  }
-
-  const handleAddTodoItem = ({ todo }) => {
-    dispatch(todoCreateAction(uuidv4(), todo));
   }
 
   return (

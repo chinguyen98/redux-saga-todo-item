@@ -31,6 +31,19 @@ const todoReducer = (state = initState, action) => {
         ]
       }
     }
+    case todoActionTypes.TO_DO_REMOVE: {
+      const { id } = action.payload;
+      const newlist = [...state.listTodo];
+      // const index = state.listTodo.indexOf(item => {
+      //   return item.id === id;
+      // });
+      return {
+        ...state,
+        listTodo: [
+          ...newlist.filter(item => item.id !== id),
+        ]
+      }
+    }
     default: {
       return { ...state };
     }

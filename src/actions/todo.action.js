@@ -9,3 +9,12 @@ export const todoCreateAction = (id, content) => {
     }
   }
 }
+
+export const todoDeleteAction = (id) => {
+  return {
+    type: todoActionTypes.TO_DO_REMOVE,
+    payload: {
+      id,
+    }
+  }
+}
