@@ -1,5 +1,4 @@
 import React from 'react';
-import Switch from 'react-bootstrap/esm/Switch';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Auth from './components/Auth';
 import AuthenticatedRoute from './components/AuthenticatedRoute';
