@@ -13,6 +13,7 @@ const userReducer = (state = initState, action) => {
       const { isLoading } = action.payload;
       return {
         ...state,
+        error: null,
         isLoading,
       }
     }

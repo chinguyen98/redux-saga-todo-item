@@ -1,15 +1,18 @@
 import React from 'react';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import { Alert, Button, Col, Container, Form, Row, Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import './login-page.scss';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signInStartAction } from '../../actions/user.action';
 
 function LoginPage() {
   const dispatch = useDispatch();
+
+  const errorMessage = useSelector(state => state.user.error);
+  const isLoading = useSelector(state => state.user.isLoading);
 
   const schema = yup.object().shape({
     email: yup.string()
@@ -27,11 +30,17 @@ function LoginPage() {
     dispatch(signInStartAction(email, password));
   };
 
+
   return (
     <Container className="login-page py-5">
       <h1 className="text-center">Login Page</h1>
       <Form onSubmit={handleSubmit(handleSignIn)}>
         <Row className="d-flex justify-content-center">
+          <Col md={8}>
+            {
+              errorMessage && <Alert variant="danger">{errorMessage}</Alert>
+            }
+          </Col>
           <Col className="pb-3" md={8}>
             <Form.Label>Email address <span className="text-danger">{errors.email?.message}</span></Form.Label>
             <Form.Control ref={register} name="email" type="text" placeholder="Enter email" />
@@ -41,9 +50,14 @@ function LoginPage() {
             <Form.Control ref={register} name="password" type="password" placeholder="Enter password" />
           </Col>
           <Col md={8}>
-            <Button variant="primary" type="submit">
-              Login
-          </Button>
+            <Button variant={isLoading ? 'dark' : 'primary'} type="submit" disabled={isLoading}>
+              <span>
+                {
+                  isLoading && <Spinner animation="border" variant="primary" size="sm" />
+                }
+                <b>Login{isLoading && '.......'}</b>
+              </span>
+            </Button>
           </Col>
         </Row>
       </Form>
