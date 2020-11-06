@@ -1,14 +1,17 @@
 import React from 'react';
 import { Alert, Button, Col, Container, Form, FormGroup, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TodoItem from '../../components/TodoItem';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { todoCreateAction } from '../../actions/todo.action';
 
 function HomePage() {
   const { firstName } = useSelector(state => state.user);
   const { listTodo } = useSelector(state => state.todo);
+
+  const dispatch = useDispatch();
 
   const schema = yup.object().shape({
     todo: yup.string()
@@ -34,7 +37,7 @@ function HomePage() {
   }
 
   const handleAddTodoItem = ({ todo }) => {
-    console.log(todo);
+    dispatch(todoCreateAction(todo));
   }
 
   return (

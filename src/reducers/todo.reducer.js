@@ -17,10 +17,14 @@ const todoReducer = (state = initState, action) => {
   switch (action.type) {
     case todoActionTypes.TO_DO_CREATE: {
       const { content } = action.payload;
+      const item = {
+        content,
+        isDone: false,
+      }
       return {
         ...state,
         listTodo: [
-          ...state.listTodo, content
+          ...state.listTodo, item
         ]
       }
     }
