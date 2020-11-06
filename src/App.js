@@ -11,10 +11,8 @@ function App() {
     <>
       <BrowserRouter>
         <Menu />
-        <Switch>
           <AuthenticatedRoute exact path="/" component={HomePage} />
           <Route path="/auth" component={Auth} />
-        </Switch>
       </BrowserRouter>
     </>
   );

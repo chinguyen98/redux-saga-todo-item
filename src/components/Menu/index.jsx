@@ -7,7 +7,7 @@ function Menu() {
   const { isLogged } = useSelector(state => state.user);
 
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="lg" style={{backgroundColor:'pink'}}>
       <Navbar.Brand href="/">Todo App</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
