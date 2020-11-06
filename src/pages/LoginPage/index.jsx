@@ -5,8 +5,12 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import './login-page.scss';
+import { useDispatch } from 'react-redux';
+import { signInStartAction } from '../../actions/user.action';
 
 function LoginPage() {
+  const dispatch = useDispatch();
+
   const schema = yup.object().shape({
     email: yup.string()
       .email('Vui lòng nhập đúng định dạng email!')
@@ -20,7 +24,7 @@ function LoginPage() {
   });
 
   const handleSignIn = ({ email, password }) => {
-    console.log({ email, password });
+    dispatch(signInStartAction(email, password));
   };
 
   return (
