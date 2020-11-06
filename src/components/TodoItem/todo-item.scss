@@ -1,0 +1,10 @@
+.todo-item {
+  
+  &--notdone{
+    background-color: aqua;
+  }
+
+  &--done{
+    background-color: gray;
+  }
+}

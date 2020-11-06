@@ -1,7 +1,16 @@
 const { default: todoActionTypes } = require("../action-types/todo.type");
 
 const initState = {
-  listTodo: [],
+  listTodo: [
+    {
+      content: 'Example Not Done!',
+      isDone: false,
+    },
+    {
+      content: 'Example Done!',
+      isDone: true,
+    },
+  ],
 }
 
 const todoReducer = (state = initState, action) => {

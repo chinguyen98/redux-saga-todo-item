@@ -1,10 +1,25 @@
 import React from 'react';
 import { Alert, Button, Col, Container, Form, FormGroup, FormLabel, Row } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
+import TodoItem from '../../components/TodoItem';
 
 function HomePage() {
   const { firstName } = useSelector(state => state.user);
   const { listTodo } = useSelector(state => state.todo);
+
+  const renderTodoList = () => {
+    const gui = listTodo.map(item => {
+      return (
+        <TodoItem
+          key={item.content}
+          content={item.content}
+          isDone={item.isDone}
+        />
+      )
+    })
+
+    return gui;
+  }
 
   return (
     <Container className="mr-5">
@@ -30,13 +45,14 @@ function HomePage() {
           </Col>
         </Row>
       </Form>
-      <Row>
-        <Col>
-          {
-            listTodo.length === 0 && <Alert variant="danger">No thing!!</Alert>
-          }
-        </Col>
-      </Row>
+      <Container>
+        {
+          listTodo.length === 0 && <Alert variant="danger">No thing!!</Alert>
+        }
+        {
+          listTodo.length !== 0 && renderTodoList()
+        }
+      </Container>
     </Container>
   );
 }
