@@ -1,4 +1,9 @@
 .todo-item {
+  box-shadow: 0px 0px 0px 3px white inset;
+
+  &__content{
+    word-wrap: break-word;
+  }
   
   &--notdone{
     background-color: aqua;

@@ -52,37 +52,41 @@ function HomePage() {
   }
 
   return (
-    <Container className="mr-5">
+    <Container className="d-flex flex-column justify-content-center align-content-center">
       <Row>
-        <Col className="d-flex flex-column justify-content-center align-items-center">
+        <Col md={12} className="d-flex flex-column justify-content-center align-items-center">
           <h1>Todo List!!!</h1>
           <p className="text-success">Hello {firstName} </p>
         </Col>
       </Row>
-      <Form onSubmit={handleSubmit(handleAddTodoItem)}>
-        <Row className="d-flex justify-content-center align-items-center">
-          <Col>
-            <FormGroup>
-              <Row>
-                <Col xs={8}>
-                  <Form.Control ref={register} name="todo" type="text" placeholder="Enter new todo!" />
-                  {
-                    <p className="text-danger">{errors.todo?.message}</p>
-                  }
-                </Col>
-                <Col xs={4}>
-                  <Button type="submit">Add new</Button>
-                </Col>
-              </Row>
-            </FormGroup>
-          </Col>
-        </Row>
-      </Form>
-      <Container>
+      <Row>
+        <Col md={12} className="d-flex flex-column justify-content-center align-items-center">
+          <Form onSubmit={handleSubmit(handleAddTodoItem)}>
+            <Row className="d-flex justify-content-center align-items-center">
+              <Col md={12}>
+                <FormGroup>
+                  <Row>
+                    <Col md={8} xs={8}>
+                      <Form.Control ref={register} name="todo" type="text" placeholder="Enter new todo!" />
+                      {
+                        <p className="text-danger">{errors.todo?.message}</p>
+                      }
+                    </Col>
+                    <Col md={4} xs={4}>
+                      <Button type="submit">Add new</Button>
+                    </Col>
+                  </Row>
+                </FormGroup>
+              </Col>
+            </Row>
+          </Form>
+        </Col>
+      </Row>
+      <Row>
         {
           listTodo.length === 0 ? <Alert variant="danger">No thing!!</Alert> : renderTodoList()
         }
-      </Container>
+      </Row>
     </Container>
   );
 }
