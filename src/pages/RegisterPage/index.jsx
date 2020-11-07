@@ -15,8 +15,10 @@ function RegisterPage() {
     email: yup.string()
       .email('Vui lòng nhập đúng định dạng email!')
       .required('Vui lòng nhập email!'),
-    name: yup.string()
+    firstname: yup.string()
       .required('Vui lòng nhập tên!'),
+    lastname: yup.string()
+      .required('Vui lòng nhập họ!'),
     password: yup.string()
       .required('Vui lòng nhập password!'),
     confirmPasword: yup.string()
@@ -28,8 +30,8 @@ function RegisterPage() {
     resolver: yupResolver(schema),
   });
 
-  const handleRegister = ({ email, password, name }) => {
-    dispatch(registerStartAction(email, password, name, history.push));
+  const handleRegister = ({ email, password, firstname, lastname }) => {
+    dispatch(registerStartAction(email, password, firstname, lastname, history.push));
   }
 
   return (
@@ -42,8 +44,12 @@ function RegisterPage() {
             <Form.Control ref={register} name="email" type="text" placeholder="Enter email" />
           </Col>
           <Col className="pb-3" md={8}>
-            <Form.Label>Your name: <span className="text-danger">{errors.name?.message}</span></Form.Label>
-            <Form.Control ref={register} name="name" type="text" placeholder="Enter your name" />
+            <Form.Label>Your firsname: <span className="text-danger">{errors.firstname?.message}</span></Form.Label>
+            <Form.Control ref={register} name="firstname" type="text" placeholder="Enter your firstname" />
+          </Col>
+          <Col className="pb-3" md={8}>
+            <Form.Label>Your lastname: <span className="text-danger">{errors.lastname?.message}</span></Form.Label>
+            <Form.Control ref={register} name="lastname" type="text" placeholder="Enter your lastname" />
           </Col>
           <Col className="pb-3" md={8}>
             <Form.Label>Password <span className="text-danger">{errors.password?.message}</span></Form.Label>

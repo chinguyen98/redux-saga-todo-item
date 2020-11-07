@@ -7,10 +7,10 @@ export const signInStartAction = (email, password, redirectCallback) => {
   }
 }
 
-export const registerStartAction = (email, password, name, redirectCallback) => {
+export const registerStartAction = (email, password, firstname, lastname, redirectCallback) => {
   return {
     type: userActionTypes.REGISTER_START,
-    payload: { email, password, name, redirectCallback },
+    payload: { email, password, firstname, lastname, redirectCallback },
   }
 }
 
