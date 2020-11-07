@@ -17,6 +17,7 @@ function Menu() {
             !isLogged && (
               <NavDropdown title="Auth" id="collasible-nav-dropdown">
                 <NavDropdown.Item><Link to="/auth/login">Login</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="/auth/register">Register</Link></NavDropdown.Item>
               </NavDropdown>
             )
           }
