@@ -1,5 +1,13 @@
 const { default: todoActionTypes } = require("../action-types/todo.type");
 
+const getIndex = (list, id) => {
+  const index = list.findIndex(item => {
+    return item.id === id;
+  });
+
+  return index;
+}
+
 const initState = {
   listTodo: [
     {
@@ -24,6 +32,7 @@ const todoReducer = (state = initState, action) => {
         content,
         isDone: false,
       }
+
       return {
         ...state,
         listTodo: [
@@ -33,15 +42,31 @@ const todoReducer = (state = initState, action) => {
     }
     case todoActionTypes.TO_DO_REMOVE: {
       const { id } = action.payload;
-      const newlist = [...state.listTodo];
-      // const index = state.listTodo.indexOf(item => {
-      //   return item.id === id;
-      // });
+      const index = getIndex(state.listTodo, id);
+
       return {
         ...state,
         listTodo: [
-          ...newlist.filter(item => item.id !== id),
-        ]
+          ...state.listTodo.slice(0, index),
+          ...state.listTodo.slice(index + 1),
+        ],
+      }
+    }
+    case todoActionTypes.TO_DO_DONE: {
+      const { id } = action.payload;
+      const cloneArr = [...state.listTodo];
+      const index = getIndex(cloneArr, id);
+
+      return {
+        ...state,
+        listTodo: [
+          ...cloneArr.slice(0, index),
+          {
+            ...cloneArr[index],
+            isDone: true,
+          },
+          ...cloneArr.slice(index + 1),
+        ],
       }
     }
     default: {

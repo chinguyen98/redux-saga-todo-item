@@ -18,3 +18,12 @@ export const todoDeleteAction = (id) => {
     }
   }
 }
+
+export const todoSetDoneAction = (id) => {
+  return {
+    type: todoActionTypes.TO_DO_DONE,
+    payload: {
+      id,
+    }
+  }
+}

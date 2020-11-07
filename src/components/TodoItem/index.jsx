@@ -3,7 +3,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 
 import './todo-item.scss';
 
-function TodoItem({ content, isDone, deleteItem }) {
+function TodoItem({ content, isDone, deleteItem, setDone }) {
   return (
     <Row className={`p-1 my-2 todo-item--${isDone ? 'done' : 'notdone'}`}>
       <Col xs={12}>
@@ -13,7 +13,7 @@ function TodoItem({ content, isDone, deleteItem }) {
           </Col>
           <Col className="d-flex justify-content-center align-items-center" xs={12}>
             {
-              !isDone && <Button className="mx-1" variant="success">Done</Button>
+              !isDone && <Button className="mx-1" variant="success" onClick={setDone}>Done</Button>
             }
             <Button
               className="mx-1"

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TodoItem from '../../components/TodoItem';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { todoCreateAction, todoDeleteAction } from '../../actions/todo.action';
+import { todoCreateAction, todoDeleteAction, todoSetDoneAction } from '../../actions/todo.action';
 import { v4 as uuidv4 } from 'uuid';
 
 function HomePage() {
@@ -31,6 +31,10 @@ function HomePage() {
     dispatch(todoDeleteAction(id));
   }
 
+  const handleSetDoneTodoItem = (id) => {
+    dispatch(todoSetDoneAction(id));
+  }
+
   const renderTodoList = () => {
     const gui = listTodo.map(item => {
       return (
@@ -39,6 +43,7 @@ function HomePage() {
           content={item.content}
           isDone={item.isDone}
           deleteItem={() => { handleDeleteTodoItem(item.id) }}
+          setDone={() => { handleSetDoneTodoItem(item.id) }}
         />
       )
     })
