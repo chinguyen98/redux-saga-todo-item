@@ -3,8 +3,14 @@ import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { registerStartAction } from '../../actions/user.action';
 
 function RegisterPage() {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const schema = yup.object().shape({
     email: yup.string()
       .email('Vui lòng nhập đúng định dạng email!')
@@ -23,7 +29,7 @@ function RegisterPage() {
   });
 
   const handleRegister = ({ email, password, name }) => {
-    console.log({ email, password, name })
+    dispatch(registerStartAction(email, password, name, history.push));
   }
 
   return (
