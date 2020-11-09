@@ -1,3 +1,7 @@
+@import './base';
+
+
 .login-page{
-  color: black;
+  color: $test-color;
+  @include func();
 }
