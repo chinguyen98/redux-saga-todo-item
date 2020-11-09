@@ -1,22 +1,20 @@
-import { put, takeLatest } from "redux-saga/effects";
+import { apply, call, delay, put, takeLatest } from "redux-saga/effects";
 import userActionTypes from "../action-types/user.type";
 import { signInSetErrorAction, signInSetLoadingAction, signInSetUserAction } from "../actions/user.action";
 import { signInApi } from "../api/auth.api";
 import * as jwt from 'jsonwebtoken';
 import handleHttpError from "../helpers/handleHttpError";
 
-const delay = (ms) => new Promise(res => setTimeout(res, ms))
-
 function* signInProcess({ payload: { email, password, redirectCallback } }) {
   try {
     yield put(signInSetLoadingAction(true));
-    //yield delay(3000);//assuming this take take 3s to response!
-    const response = yield signInApi(email, password);
-    const { firstname, lastname } = yield jwt.decode(response.accessToken);
+    yield delay(1000);//assuming this take take 3s to response!
+    const response = yield apply('signInApi', signInApi, [email, password]);
+    const { firstname, lastname } = yield call(['jwtDecode', jwt.decode], response.accessToken);
     yield put(signInSetUserAction(firstname, lastname, false));
-    redirectCallback('/');
+    yield call(['redirectCallback', redirectCallback], '/');
   } catch (err) {
-    const message = yield handleHttpError(err);
+    const message = yield call(['handleHttpError', handleHttpError], err);
     yield put(signInSetErrorAction(message));
   }
 }
