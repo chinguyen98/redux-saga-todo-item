@@ -9,11 +9,13 @@ function* signInProcess({ payload: { email, password, redirectCallback } }) {
   try {
     yield put(signInSetLoadingAction(true));
     yield delay(1000);//assuming this take take 3s to response!
-    const response = yield apply('signInApi', signInApi, [email, password]);
-    const { firstname, lastname } = yield call(['jwtDecode', jwt.decode], response.accessToken);
+    const { accessToken } = yield apply('signInApi', signInApi, [email, password]);
+    const { firstname, lastname } = yield call(['jwtDecode', jwt.decode], accessToken);
     yield put(signInSetUserAction(firstname, lastname, false));
+    yield apply(localStorage, localStorage.setItem, ['token', accessToken]);
     yield call(['redirectCallback', redirectCallback], '/');
   } catch (err) {
+    console.log(err)
     const message = yield call(['handleHttpError', handleHttpError], err);
     yield put(signInSetErrorAction(message));
   }
