@@ -36,6 +36,9 @@ const userReducer = (state = initState, action) => {
         isLogged: true,
       }
     }
+    case userActionTypes.UNSET_USER: {
+      return { ...initState };
+    }
     default: {
       return { ...state };
     }

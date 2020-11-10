@@ -34,3 +34,17 @@ export const signInSetUserAction = (firstName, lastName, isLoading) => {
     payload: { firstName, lastName, isLoading },
   }
 }
+
+export const logoutUserAction = (redirectCallback) => {
+  return {
+    type: userActionTypes.LOG_OUT,
+    payload: { redirectCallback },
+  }
+}
+
+export const unsetUserAction = () => {
+  return {
+    type: userActionTypes.UNSET_USER,
+    payload: null,
+  }
+}

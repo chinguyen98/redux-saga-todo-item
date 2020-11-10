@@ -4,6 +4,8 @@ const userActionTypes = {
   SIGN_IN_SET_LOADING: 'SIGN_IN_SET_LOADING',
   SIGN_IN_SET_ERROR: 'SIGN_IN_SET_ERROR',
   SIGN_IN_SET_USER: 'SIGN_IN_SET_USER',
+  LOG_OUT: 'LOG_OUT',
+  UNSET_USER: 'UNSET_USER',
 }
 
 export default userActionTypes;

@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Route, Switch, useHistory, useRouteMatch } from 'react-router-dom';
+import React from 'react';
+import { Route, Switch, useRouteMatch } from 'react-router-dom';
 import LoginPage from '../../pages/LoginPage';
 import RegisterPage from '../../pages/RegisterPage';
 import NoMatch from '../NoMatch';
